@@ -9,31 +9,31 @@ var gulp       = require('gulp'),
 
 gulp.task('style', function() {
 	var SOURCE = './src/progressbar.scss',
-		DEST = './dest/style';
+		DIST = './dist/style';
 
 	return gulp.src(SOURCE)
 	    .pipe(sass())
-	    .pipe(gulp.dest(DEST))
+	    .pipe(gulp.dest(DIST))
 });
 
 gulp.task('bars', function() {
 	var SOURCE = './src/Bars.js',
-		DEST = './dest/scripts';
+		DIST = './dist/scripts';
 
 	return browserify(SOURCE, {debug: false})
 		.transform(babelify, {presets: ['es2015', 'react']})
 		.bundle()
 		.pipe(source('bars.js'))
 		.pipe(buffer())
-		.pipe(gulp.dest(DEST));
+		.pipe(gulp.dest(DIST));
 });
 
 gulp.task('copy', function() {
 	var SOURCE = './src/index.html',
-		DEST = './dest/';
+		DIST = './dist/';
 
 	return gulp.src(SOURCE)
-		.pipe(gulp.dest(DEST));
+		.pipe(gulp.dest(DIST));
 });
 
 gulp.task('default', ['copy', 'style', 'bars']);
