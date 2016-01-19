@@ -1,4 +1,5 @@
-# Progress with es2015 React based upon [react-progress-form](https://github.com/expalmer/react-progress-form) by [expalmer](https://github.com/expalmer)
+# Progress bars
+A React module using es2015, based upon [react-progress-form](https://github.com/expalmer/react-progress-form) by [expalmer](https://github.com/expalmer)
 
 # How to use ?
 
