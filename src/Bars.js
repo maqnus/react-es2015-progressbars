@@ -36,4 +36,4 @@ export default class Bars extends React.Component {
 	 }
 }
 
-ReactDOM.render(<Bars />, document.getElementById('app'))
+ReactDOM.render(<Bars />, document.querySelector('.bonusapp'))

@@ -29,11 +29,11 @@ gulp.task('bars', function() {
 });
 
 gulp.task('copy', function() {
-	var SOURCE = './src/idnex.html',
+	var SOURCE = './src/index.html',
 		DEST = './dest/';
 
 	return gulp.src(SOURCE)
 		.pipe(gulp.dest(DEST));
 });
 
-gulp.task('default', ['style', 'bars']);
+gulp.task('default', ['copy', 'style', 'bars']);
