@@ -1,6 +1,4 @@
-# Progress with es2015 React based on [expalmer](https://github.com/expalmer)[](https://github.com/expalmer/react-progress-form)
-
-An example utilizing [React](http://facebook.github.io/react/).
+# Progress with es2015 React based upon [react-progress-form](https://github.com/expalmer/react-progress-form) by [expalmer](https://github.com/expalmer)
 
 # How to use ?
 
