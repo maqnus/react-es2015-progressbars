@@ -9,31 +9,27 @@ export default class Bars extends React.Component {
 	 *	Example: <Bars />
 	 */
 
-	 constructor(props) {
-	 	super(props)
-
-	 }
+  constructor(props) {
+    super(props)
+    this.state = {bar_array: props.bars}
+  }
 
   renderProgressbars() {
   	let progressbars = []
-  	let done = false
-  	let count = 0
-
-  	while (!done) {
-  		progressbars.push(<ProgressElement key={count} percent={13*count+1} />)
-  		done = count++ > 2
-  	}
+    let array = this.state.bar_array
+    for (var key in array) {
+      progressbars.push(<ProgressElement key={key} percent={array[key].percent} />)
+    }
 
   	return progressbars
   }
 
-	 render() {
-	 	return (
+  render() {
+    	return (
       <div>
         {this.renderProgressbars()}
       </div>
     )
-	 }
+  }
 }
-
-ReactDOM.render(<Bars />, document.querySelector('.bonusapp'))
+ReactDOM.render(<Bars bars={array} />, document.querySelector('.bonusapp'))

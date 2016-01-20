@@ -16,7 +16,7 @@ gulp.task('style', function() {
 	    .pipe(gulp.dest(DIST))
 });
 
-gulp.task('bars', function() {
+gulp.task('create-bars', function() {
 	var SOURCE = './src/Bars.js',
 		DIST = './dist/scripts';
 
@@ -36,4 +36,4 @@ gulp.task('copy', function() {
 		.pipe(gulp.dest(DIST));
 });
 
-gulp.task('default', ['copy', 'style', 'bars']);
+gulp.task('default', ['copy', 'style', 'create-bars']);
