@@ -1,39 +1,58 @@
 var gulp       = require('gulp'),
 
+	// React building process
 	browserify = require('browserify'),
 	babelify   = require('babelify'),
 	source     = require('vinyl-source-stream'),
 	buffer     = require('vinyl-buffer'),
 
+	// CSS spesific
 	sass = require('gulp-sass');
 
-gulp.task('style', function() {
-	var SOURCE = './src/progressbar.scss',
-		DIST = './dist/style';
+	// Development spesific
+	livereload = require('gulp-livereload');
 
-	return gulp.src(SOURCE)
+var SOURCE = './src/',
+	DIST   = './dist/';
+
+gulp.task('style', function() {
+	return gulp.src(SOURCE+'progressbar.scss')
 	    .pipe(sass())
-	    .pipe(gulp.dest(DIST))
+	    .pipe(gulp.dest(DIST+'style'))
+	    .pipe(livereload());
 });
 
-gulp.task('create-bars', function() {
-	var SOURCE = './src/Bars.js',
-		DIST = './dist/scripts';
-
-	return browserify(SOURCE, {debug: false})
+gulp.task('build-react-components', function() {
+	return browserify(SOURCE+'Bars.js', {debug: false})
 		.transform(babelify, {presets: ['es2015', 'react']})
 		.bundle()
 		.pipe(source('bars.js'))
 		.pipe(buffer())
-		.pipe(gulp.dest(DIST));
+		.pipe(gulp.dest(DIST+'scripts'))
+		.pipe(livereload());
 });
 
 gulp.task('copy', function() {
-	var SOURCE = './src/index.html',
-		DIST = './dist/';
-
-	return gulp.src(SOURCE)
-		.pipe(gulp.dest(DIST));
+	return gulp.src(SOURCE+'index.html')
+		.pipe(gulp.dest(DIST))
+		.pipe(livereload());
 });
 
-gulp.task('default', ['copy', 'style', 'create-bars']);
+gulp.task('watch-css', function() {
+	livereload.listen();
+	gulp.watch(SOURCE + '**/*.scss', ['style']);
+});
+
+gulp.task('watch-js', function() {
+	livereload.listen();
+	gulp.watch(SOURCE + '**/*.js', ['build-react-components']);
+});
+
+gulp.task('watch-html', function() {
+	livereload.listen();
+	gulp.watch(SOURCE + '**/*.html', ['copy']);
+});
+
+gulp.task('watch', ['watch-html', 'watch-css', 'watch-js']);
+
+gulp.task('default', ['copy', 'style', 'build-react-components']);

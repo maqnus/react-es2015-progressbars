@@ -4,7 +4,7 @@ import classSet from './classSet'
 export default class ProgressElement extends React.Component {
 
   /*  Constructor details:
-   *  Example: <ProgressElement />
+   *  Example: <ProgressElement key={key} percent={array[key].percent} />
    */
 
    constructor(props) {
@@ -15,7 +15,7 @@ export default class ProgressElement extends React.Component {
   componentDidMount() {
     var percent = parseInt(this.state.percent)
     var deg = 360*percent/100 
-    var element = this.refs.progress.getDOMNode()
+    var element = this.refs.progress
     element.style.transform = 'rotate(-'+ deg +'deg)'
   }
 

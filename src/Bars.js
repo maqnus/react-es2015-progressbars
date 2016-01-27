@@ -6,7 +6,15 @@ import ProgressElement from './Progress'
 export default class Bars extends React.Component {
 
 	/*	Constructor details:
-	 *	Example: <Bars />
+   * Example: 
+   * var array = {
+   *   januar: {
+   *     percent: 10
+   *   },
+   *   februar: {
+   *     percent: 20
+   *   }
+	 * <Bars bars={array} />
 	 */
 
   constructor(props) {
